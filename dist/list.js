@@ -888,12 +888,12 @@ module.exports = function(id, options, values) {
     self.matchingItems = [];
     self.templater.clear();
     for (var i = 0; i < il; i++) {
-      if (is[i].matching() && ((self.matchingItems.length+1) >= self.i && self.visibleItems.length < self.page)) {
+        if (is[i].matching() && ((self.matchingItems.length + 1) >= self.i && self.visibleItems.length < self.page)) {
         is[i].show();
-        self.visibleItems.push(is[i]);
-        self.matchingItems.push(is[i]);
+        if (!is[i]["alwaysVisible"]) self.visibleItems.push(is[i]);
+        if (!is[i]["alwaysVisible"]) self.matchingItems.push(is[i]);
       } else if (is[i].matching()) {
-        self.matchingItems.push(is[i]);
+        if (!is[i]["alwaysVisible"]) self.matchingItems.push(is[i]);
         is[i].hide();
       } else {
         is[i].hide();
